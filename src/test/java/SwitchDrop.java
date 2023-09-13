@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selectors.byTagAndText;
 
 public class SwitchDrop {
     @BeforeAll
@@ -16,7 +17,9 @@ public class SwitchDrop {
     @Test
     void dropSwitch() {
         open("");
-        $("#content").$$("ul li").findBy(text("Drag and Drop")).$("a").click();
+
+        $("#content").$(byTagAndText("a", "Drag and Drop" )).click();
+        //$("#content").$$("ul li").findBy(text("Drag and Drop")).$("a").click();
         $("#column-a").shouldHave(text("A"));
         $("#column-b").shouldHave(text("B"));
         $("#column-a").dragAndDropTo("#column-b");
